@@ -39,7 +39,7 @@ $results = $statement->fetchAll(PDO::FETCH_OBJ);
 <h3> You searched for "<?php echo $dvd_title ?>":</h3>
 
 <!--loops through the results and prints them out if there are any-->
-<?php if(rowCount($results) == 0 || empty($dvd_title) ): ?>
+<?php if(count($results) == 0 || empty($dvd_title) ): ?>
   <!--displays message with nothing found and link back to index-->
   <h2> Nothing was found! <a href="index.php">Click here to go back to search again.</a></h2>
 <?php else: ?>

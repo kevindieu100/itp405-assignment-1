@@ -16,8 +16,12 @@ $pdo = new PDO("mysql:host=$host;dbname=$database_name", $username, $password);
 
 //title, genre, format, rating
 $sql = "
-  SELECT title, rating_name
+  SELECT title, rating_name, genre_name, format_name
   FROM dvds
+  INNER JOIN genres
+  ON dvds.genre_id = genres.id
+  INNER JOIN formats
+  ON dvds.format_id = formats.id
   INNER JOIN ratings
   on dvds.rating_id = ratings.id
   WHERE rating_name LIKE ?
@@ -41,6 +45,8 @@ $results = $statement->fetchAll(PDO::FETCH_OBJ);
       <h3>
         <?php echo $result->title ?>
       </h3>
+      <p>Genre: <?php echo $result->genre_name ?></p>
+      <p>Format: <?php echo $result->format_name ?></p> 
     </li>
   <?php endforeach; ?>
 </ul>
